@@ -1,3 +1,6 @@
+
+
+// settings for the spinner 
 var opts = {
       lines: 11             // The number of lines to draw
     , length: 7             // The length of each line
@@ -21,25 +24,31 @@ var opts = {
     , position: 'absolute'  // Element positioning
 };
 
-
+// set the spinner to run until ajax request comes back
 var entriesContainer = $('.entries')[0];
 var spinner = new Spinner(opts).spin(entriesContainer);
 
-$.getJSON("https://agile-thicket-5774.herokuapp.com/feed")
+$.getJSON('https://agile-thicket-5774.herokuapp.com/feed')
   .done(function(feed) {
-
+    // stop the spinner after request comes back
     spinner.stop();
 
-    var entrySource = $("#entry-template").html();
+    // compile and send the data to the handlebars template
+    var entrySource = $('#entry-template').html();
     var entryTemplate = Handlebars.compile(entrySource);
     var html = entryTemplate(feed);
 
-    $(".entries").html(html);
-    $(".details").on("click", function(e) {
-      $(this).toggleClass("no-clutter");
+    $('.entries').html(html);
+
+    $('.details').css('background-image', function() {
+      return 'url(' + this.dataset.image + ')';
+    });
+
+    $('.details').on('click', function(e) {
+      $(this).toggleClass('no-clutter');
     });
   })
   .fail(function(jqxhr, status, error) {
-    console.log("Request failed with status " + status + " and error " + error); 
+    console.log('Request failed with status ' + status + ' and error ' + error); 
   });
 
