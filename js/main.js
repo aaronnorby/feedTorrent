@@ -40,7 +40,7 @@ $.getJSON('https://agile-thicket-5774.herokuapp.com/feed')
 
     $('.entries').html(html);
 
-    $('.details').css('background-image', function() {
+    $('.details.no-clutter').css('background-image', function() {
       return 'url(' + this.dataset.image + ')';
     });
 
