@@ -50,5 +50,7 @@ $.getJSON('https://agile-thicket-5774.herokuapp.com/feed')
   })
   .fail(function(jqxhr, status, error) {
     console.log('Request failed with status ' + status + ' and error ' + error); 
+
+    $('.entries').text('oops, something went wrong!');
   });
 
