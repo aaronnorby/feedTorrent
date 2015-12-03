@@ -40,10 +40,13 @@ $.getJSON('https://agile-thicket-5774.herokuapp.com/feed')
 
     $('.entries').html(html);
 
+    // set background image for each entry using the itunes image url set on
+    // data-image attr
     $('.details.no-clutter').css('background-image', function() {
       return 'url(' + this.dataset.image + ')';
     });
 
+    // click handler to hide and reveal detail view  
     $('.details').on('click', function(e) {
       $(this).toggleClass('no-clutter');
     });
